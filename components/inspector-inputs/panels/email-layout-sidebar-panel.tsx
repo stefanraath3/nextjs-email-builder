@@ -1,6 +1,6 @@
 "use client";
 
-import { RoundedCorner } from "lucide-react";
+import { SquareRoundCorner } from "lucide-react";
 import React, { useState } from "react";
 
 import EmailLayoutPropsSchema, {
@@ -53,7 +53,7 @@ export default function EmailLayoutSidebarPanel({
         onChange={(borderColor) => updateData({ ...data, borderColor })}
       />
       <SliderWithLabelInput
-        iconLabel={<RoundedCorner className="h-4 w-4 text-gray-500" />}
+        iconLabel={<SquareRoundCorner className="h-4 w-4 text-gray-500" />}
         units="px"
         step={4}
         min={0}

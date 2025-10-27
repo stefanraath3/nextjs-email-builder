@@ -1,6 +1,6 @@
 "use client";
 
-import { RoundedCorner } from "lucide-react";
+import { SquareRoundCorner } from "lucide-react";
 import React from "react";
 
 import ColorInput from "./color-input";
@@ -63,7 +63,7 @@ function SingleStylePropertyPanel({
             Border radius
           </label>
           <SliderInput
-            label={<RoundedCorner className="h-4 w-4" />}
+            label={<SquareRoundCorner className="h-4 w-4" />}
             value={defaultValue ?? 0}
             onChange={handleChange}
             min={0}
