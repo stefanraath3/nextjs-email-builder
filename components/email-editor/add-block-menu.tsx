@@ -259,13 +259,13 @@ export default function AddBlockMenu({
         {isOpen && (
           <>
             <div
-              className="fixed inset-0 z-[100]"
+              className="fixed inset-0 z-100"
               onClick={(e) => {
                 e.stopPropagation();
                 handleClose();
               }}
             />
-            <div className="absolute left-1/2 top-full z-[101] mt-2 w-64 -translate-x-1/2 rounded-lg border border-gray-200 bg-white shadow-xl">
+            <div className="absolute left-1/2 top-full z-101 mt-2 w-64 -translate-x-1/2 rounded-lg border border-gray-200 bg-white shadow-xl">
               <div className="p-2">
                 <p className="mb-2 px-2 text-xs font-semibold text-gray-500">
                   ADD BLOCK
