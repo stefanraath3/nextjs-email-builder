@@ -1,5 +1,5 @@
 import insane, { AllowedTags } from "insane";
-import { marked, Renderer } from "marked";
+import { marked, Renderer, Tokens } from "marked";
 import React, { CSSProperties, useMemo } from "react";
 
 const ALLOWED_TAGS: AllowedTags[] = [
@@ -74,7 +74,11 @@ function sanitizer(html: string): string {
 }
 
 class CustomRenderer extends Renderer {
-  table(header: string, body: string) {
+  table(token: Tokens.Table) {
+    const header = this.parser.parse(
+      token.header as unknown as Tokens.Generic[]
+    );
+    const body = this.parser.parse(token.rows as unknown as Tokens.Generic[]);
     return `<table width="100%">
 <thead>
 ${header}</thead>
@@ -83,11 +87,12 @@ ${body}</tbody>
 </table>`;
   }
 
-  link(href: string, title: string | null, text: string) {
-    if (!title) {
-      return `<a href="${href}" target="_blank">${text}</a>`;
+  link(token: Tokens.Link) {
+    const text = this.parser.parseInline(token.tokens);
+    if (!token.title) {
+      return `<a href="${token.href}" target="_blank">${text}</a>`;
     }
-    return `<a href="${href}" title="${title}" target="_blank">${text}</a>`;
+    return `<a href="${token.href}" title="${token.title}" target="_blank">${text}</a>`;
   }
 }
 

@@ -53,20 +53,39 @@ export default function TuneMenu({ blockId }: TuneMenuProps) {
             },
           };
           break;
-        case "ColumnsContainer":
+        case "ColumnsContainer": {
+          const columnsData = block.data as {
+            style?: {
+              backgroundColor?: string | null;
+              padding?: {
+                top: number;
+                bottom: number;
+                right: number;
+                left: number;
+              } | null;
+            } | null;
+            props?: {
+              columns?: Array<{ childrenIds: string[] }>;
+              columnsCount?: number;
+              columnsGap?: number;
+              contentAlignment?: string;
+              fixedWidths?: Array<number | null | undefined>;
+            } | null;
+          };
           nDocument[id] = {
             type: "ColumnsContainer",
             data: {
-              style: block.data.style,
+              style: columnsData.style,
               props: {
-                ...block.data.props,
-                columns: block.data.props?.columns?.map((c) => ({
+                ...columnsData.props,
+                columns: columnsData.props?.columns?.map((c) => ({
                   childrenIds: filterChildrenIds(c.childrenIds),
                 })),
               },
-            } as any,
-          };
+            },
+          } as TEditorBlock;
           break;
+        }
         default:
           nDocument[id] = block;
       }
@@ -127,20 +146,39 @@ export default function TuneMenu({ blockId }: TuneMenuProps) {
             },
           };
           break;
-        case "ColumnsContainer":
+        case "ColumnsContainer": {
+          const columnsData = block.data as {
+            style?: {
+              backgroundColor?: string | null;
+              padding?: {
+                top: number;
+                bottom: number;
+                right: number;
+                left: number;
+              } | null;
+            } | null;
+            props?: {
+              columns?: Array<{ childrenIds: string[] }>;
+              columnsCount?: number;
+              columnsGap?: number;
+              contentAlignment?: string;
+              fixedWidths?: Array<number | null | undefined>;
+            } | null;
+          };
           nDocument[id] = {
             type: "ColumnsContainer",
             data: {
-              style: block.data.style,
+              style: columnsData.style,
               props: {
-                ...block.data.props,
-                columns: block.data.props?.columns?.map((c) => ({
+                ...columnsData.props,
+                columns: columnsData.props?.columns?.map((c) => ({
                   childrenIds: moveChildrenIds(c.childrenIds),
                 })),
               },
-            } as any,
-          };
+            },
+          } as TEditorBlock;
           break;
+        }
         default:
           nDocument[id] = block;
       }

@@ -11,7 +11,7 @@ import {
 import TuneMenu from "./tune-menu";
 
 type EditorBlockWrapperProps = {
-  children: JSX.Element;
+  children: React.ReactNode;
 };
 
 export default function EditorBlockWrapper({

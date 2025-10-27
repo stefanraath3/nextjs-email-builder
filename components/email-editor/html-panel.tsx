@@ -2,7 +2,7 @@
 
 import React, { useMemo } from "react";
 
-import { renderToStaticMarkup } from "@/lib/email-builder";
+import { renderToStaticMarkup } from "@/lib/email-builder/client-render-to-static-markup";
 import { useDocument } from "@/lib/editor/editor-store";
 
 import HighlightedCodePanel from "./highlighted-code-panel";

@@ -25,11 +25,11 @@ export default function RadioGroupInput({
   // Clone children and inject the active state and click handler
   const enhancedChildren = React.Children.map(children, (child) => {
     if (React.isValidElement(child)) {
+      const props = child.props as Record<string, unknown>;
       return React.cloneElement(child, {
-        ...child.props,
-        isActive: child.props.value === value,
-        onClick: () => handleChange(child.props.value),
-      } as any);
+        isActive: props.value === value,
+        onClick: () => handleChange(props.value as string),
+      } as Partial<typeof props>);
     }
     return child;
   });
@@ -77,4 +77,3 @@ export function ToggleButton({
     </button>
   );
 }
-

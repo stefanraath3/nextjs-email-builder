@@ -92,10 +92,12 @@ const EDITOR_DICTIONARY = buildBlockConfigurationDictionary({
           url:
             data.props?.url ??
             "https://placehold.co/600x400@2x/F8F8F8/CCC?text=Your%20image",
+          alt: data.props?.alt ?? "",
         },
       };
       return (
         <EditorBlockWrapper>
+          {/* eslint-disable-next-line jsx-a11y/alt-text */}
           <Image {...props} />
         </EditorBlockWrapper>
       );

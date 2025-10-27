@@ -7,6 +7,7 @@ import { HtmlProps, HtmlPropsSchema } from "@/lib/blocks/html";
 import BaseSidebarPanel from "../base-sidebar-panel";
 import MultiStylePropertyPanel from "../style-inputs";
 import TextInput from "../text-input";
+import { z } from "zod";
 
 type HtmlSidebarPanelProps = {
   data: HtmlProps;
@@ -17,7 +18,7 @@ export default function HtmlSidebarPanel({
   data,
   setData,
 }: HtmlSidebarPanelProps) {
-  const [, setErrors] = useState<any | null>(null);
+  const [, setErrors] = useState<z.ZodError | null>(null);
 
   const updateData = (d: unknown) => {
     const res = HtmlPropsSchema.safeParse(d);

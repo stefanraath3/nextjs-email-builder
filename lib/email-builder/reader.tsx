@@ -1,36 +1,32 @@
+"use client";
 import React, { createContext, useContext } from "react";
-import { z } from "zod";
 
 import {
   Avatar,
-  AvatarPropsSchema,
   Button,
-  ButtonPropsSchema,
   Divider,
-  DividerPropsSchema,
   Heading,
-  HeadingPropsSchema,
   Html,
-  HtmlPropsSchema,
   Image,
-  ImagePropsSchema,
   Spacer,
-  SpacerPropsSchema,
   Text,
-  TextPropsSchema,
 } from "@/lib/blocks";
+
 import {
   buildBlockComponent,
   buildBlockConfigurationDictionary,
-  buildBlockConfigurationSchema,
 } from "@/lib/document-core";
-import ColumnsContainerPropsSchema from "@/lib/editor/columns-container-schema";
-import ContainerPropsSchema from "@/lib/editor/container-schema";
-import EmailLayoutPropsSchema from "@/lib/editor/email-layout-schema";
 
 import ColumnsContainerReader from "./columns-container-reader";
 import ContainerReader from "./container-reader";
 import EmailLayoutReader from "./email-layout-reader";
+
+import {
+  readerSchemaDict,
+  type TReaderDocument,
+  type TReaderBlockProps,
+  type TReaderProps,
+} from "./schemas";
 
 const ReaderContext = createContext<TReaderDocument>({});
 
@@ -39,71 +35,60 @@ function useReaderDocument() {
 }
 
 const READER_DICTIONARY = buildBlockConfigurationDictionary({
-  ColumnsContainer: {
-    schema: ColumnsContainerPropsSchema,
-    Component: ColumnsContainerReader,
-  },
-  Container: {
-    schema: ContainerPropsSchema,
-    Component: ContainerReader,
-  },
-  EmailLayout: {
-    schema: EmailLayoutPropsSchema,
-    Component: EmailLayoutReader,
-  },
   Avatar: {
-    schema: AvatarPropsSchema,
+    ...readerSchemaDict.Avatar,
     Component: Avatar,
   },
   Button: {
-    schema: ButtonPropsSchema,
+    ...readerSchemaDict.Button,
     Component: Button,
   },
   Divider: {
-    schema: DividerPropsSchema,
+    ...readerSchemaDict.Divider,
     Component: Divider,
   },
   Heading: {
-    schema: HeadingPropsSchema,
+    ...readerSchemaDict.Heading,
     Component: Heading,
   },
   Html: {
-    schema: HtmlPropsSchema,
+    ...readerSchemaDict.Html,
     Component: Html,
   },
   Image: {
-    schema: ImagePropsSchema,
+    ...readerSchemaDict.Image,
     Component: Image,
   },
   Spacer: {
-    schema: SpacerPropsSchema,
+    ...readerSchemaDict.Spacer,
     Component: Spacer,
   },
   Text: {
-    schema: TextPropsSchema,
+    ...readerSchemaDict.Text,
     Component: Text,
+  },
+  Container: {
+    ...readerSchemaDict.Container,
+    Component: ContainerReader,
+  },
+  ColumnsContainer: {
+    ...readerSchemaDict.ColumnsContainer,
+    Component: ColumnsContainerReader,
+  },
+  EmailLayout: {
+    ...readerSchemaDict.EmailLayout,
+    Component: EmailLayoutReader,
   },
 });
 
-export const ReaderBlockSchema =
-  buildBlockConfigurationSchema(READER_DICTIONARY);
-export type TReaderBlock = z.infer<typeof ReaderBlockSchema>;
-
-export const ReaderDocumentSchema = z.record(z.string(), ReaderBlockSchema);
-export type TReaderDocument = Record<string, TReaderBlock>;
-
 const BaseReaderBlock = buildBlockComponent(READER_DICTIONARY);
 
-export type TReaderBlockProps = { id: string };
 export function ReaderBlock({ id }: TReaderBlockProps) {
   const document = useReaderDocument();
-  return <BaseReaderBlock {...document[id]} />;
+  const block = document[id];
+  if (!block) return null;
+  return <BaseReaderBlock {...block} />;
 }
-
-export type TReaderProps = {
-  document: Record<string, z.infer<typeof ReaderBlockSchema>>;
-  rootBlockId: string;
-};
 
 export default function Reader({ document, rootBlockId }: TReaderProps) {
   return (

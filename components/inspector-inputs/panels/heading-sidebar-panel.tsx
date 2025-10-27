@@ -12,6 +12,7 @@ import BaseSidebarPanel from "../base-sidebar-panel";
 import RadioGroupInput, { ToggleButton } from "../radio-group-input";
 import MultiStylePropertyPanel from "../style-inputs";
 import TextInput from "../text-input";
+import { z } from "zod";
 
 type HeadingSidebarPanelProps = {
   data: HeadingProps;
@@ -22,7 +23,7 @@ export default function HeadingSidebarPanel({
   data,
   setData,
 }: HeadingSidebarPanelProps) {
-  const [, setErrors] = useState<any | null>(null);
+  const [, setErrors] = useState<z.ZodError | null>(null);
 
   const updateData = (d: unknown) => {
     const res = HeadingPropsSchema.safeParse(d);
@@ -70,4 +71,3 @@ export default function HeadingSidebarPanel({
     </BaseSidebarPanel>
   );
 }
-

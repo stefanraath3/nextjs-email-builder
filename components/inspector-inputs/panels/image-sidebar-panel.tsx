@@ -14,6 +14,7 @@ import RadioGroupInput, { ToggleButton } from "../radio-group-input";
 import MultiStylePropertyPanel from "../style-inputs";
 import TextDimensionInput from "../text-dimension-input";
 import TextInput from "../text-input";
+import { z } from "zod";
 
 type ImageSidebarPanelProps = {
   data: ImageProps;
@@ -24,7 +25,7 @@ export default function ImageSidebarPanel({
   data,
   setData,
 }: ImageSidebarPanelProps) {
-  const [, setErrors] = useState<any | null>(null);
+  const [, setErrors] = useState<z.ZodError | null>(null);
 
   const updateData = (d: unknown) => {
     const res = ImagePropsSchema.safeParse(d);
@@ -105,4 +106,3 @@ export default function ImageSidebarPanel({
     </BaseSidebarPanel>
   );
 }
-

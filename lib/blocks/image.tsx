@@ -59,6 +59,7 @@ export function Image({ style, props }: ImageProps) {
   const height = props?.height ?? undefined;
 
   const imageElement = (
+    // eslint-disable-next-line @next/next/no-img-element
     <img
       alt={props?.alt ?? ""}
       src={props?.url ?? ""}
@@ -89,4 +90,3 @@ export function Image({ style, props }: ImageProps) {
     </div>
   );
 }
-

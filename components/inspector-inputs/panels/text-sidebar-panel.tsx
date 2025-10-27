@@ -8,6 +8,7 @@ import BaseSidebarPanel from "../base-sidebar-panel";
 import BooleanInput from "../boolean-input";
 import MultiStylePropertyPanel from "../style-inputs";
 import TextInput from "../text-input";
+import { z } from "zod";
 
 type TextSidebarPanelProps = {
   data: TextProps;
@@ -18,7 +19,7 @@ export default function TextSidebarPanel({
   data,
   setData,
 }: TextSidebarPanelProps) {
-  const [, setErrors] = useState<any | null>(null);
+  const [, setErrors] = useState<z.ZodError | null>(null);
 
   const updateData = (d: unknown) => {
     const res = TextPropsSchema.safeParse(d);
@@ -64,4 +65,3 @@ export default function TextSidebarPanel({
     </BaseSidebarPanel>
   );
 }
-

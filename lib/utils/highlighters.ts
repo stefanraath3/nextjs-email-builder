@@ -15,7 +15,7 @@ export async function highlightHtml(value: string): Promise<string> {
       plugins: [prettierPluginHtml, prettierPluginEstree],
     });
     return hljs.highlight(prettyValue, { language: "html" }).value;
-  } catch (e) {
+  } catch {
     // If formatting fails, just highlight without formatting
     return hljs.highlight(value, { language: "html" }).value;
   }
@@ -28,7 +28,7 @@ export async function highlightJson(value: string): Promise<string> {
       plugins: [prettierPluginHtml, prettierPluginEstree],
     });
     return hljs.highlight(prettyValue, { language: "json" }).value;
-  } catch (e) {
+  } catch {
     // If formatting fails, just highlight without formatting
     return hljs.highlight(value, { language: "json" }).value;
   }

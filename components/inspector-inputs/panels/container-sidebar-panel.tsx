@@ -8,6 +8,7 @@ import ContainerPropsSchema, {
 
 import BaseSidebarPanel from "../base-sidebar-panel";
 import MultiStylePropertyPanel from "../style-inputs";
+import { z } from "zod";
 
 type ContainerSidebarPanelProps = {
   data: ContainerProps;
@@ -18,7 +19,7 @@ export default function ContainerSidebarPanel({
   data,
   setData,
 }: ContainerSidebarPanelProps) {
-  const [, setErrors] = useState<any | null>(null);
+  const [, setErrors] = useState<z.ZodError | null>(null);
 
   const updateData = (d: unknown) => {
     const res = ContainerPropsSchema.safeParse(d);

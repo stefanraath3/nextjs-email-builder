@@ -71,6 +71,7 @@ export function Avatar({ style, props }: AvatarProps) {
   };
   return (
     <div style={sectionStyle}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         alt={alt}
         src={imageUrl}

@@ -1,7 +1,8 @@
 import React from "react";
 import { renderToStaticMarkup as baseRenderToStaticMarkup } from "react-dom/server";
 
-import Reader, { TReaderDocument } from "./reader";
+import Reader from "./reader";
+import { TReaderDocument } from "./schemas";
 
 type TOptions = {
   rootBlockId: string;
@@ -22,4 +23,3 @@ export default function renderToStaticMarkup(
     )
   );
 }
-

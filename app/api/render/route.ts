@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { renderToStaticMarkup } from "@/lib/email-builder";
+import { renderToStaticMarkup } from "@/lib/email-builder/server-render-to-static-markup";
 
 export async function POST(req: Request) {
   try {
@@ -13,7 +13,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const html = renderToStaticMarkup(document, { rootBlockId: "root" });
+    const html = await renderToStaticMarkup(document, { rootBlockId: "root" });
 
     return NextResponse.json({ html });
   } catch (error) {

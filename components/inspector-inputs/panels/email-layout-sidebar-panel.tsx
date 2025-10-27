@@ -11,6 +11,7 @@ import BaseSidebarPanel from "../base-sidebar-panel";
 import ColorInput from "../color-input";
 import FontFamilyInput from "../font-family-input";
 import SliderWithLabelInput from "../slider-with-label-input";
+import { z } from "zod";
 
 type EmailLayoutSidebarPanelProps = {
   data: EmailLayoutProps;
@@ -21,7 +22,7 @@ export default function EmailLayoutSidebarPanel({
   data,
   setData,
 }: EmailLayoutSidebarPanelProps) {
-  const [, setErrors] = useState<any | null>(null);
+  const [, setErrors] = useState<z.ZodError | null>(null);
 
   const updateData = (d: unknown) => {
     const res = EmailLayoutPropsSchema.safeParse(d);

@@ -13,6 +13,7 @@ import ColorInput from "../color-input";
 import RadioGroupInput, { ToggleButton } from "../radio-group-input";
 import MultiStylePropertyPanel from "../style-inputs";
 import TextInput from "../text-input";
+import { z } from "zod";
 
 type ButtonSidebarPanelProps = {
   data: ButtonProps;
@@ -23,7 +24,7 @@ export default function ButtonSidebarPanel({
   data,
   setData,
 }: ButtonSidebarPanelProps) {
-  const [, setErrors] = useState<any | null>(null);
+  const [, setErrors] = useState<z.ZodError | null>(null);
 
   const updateData = (d: unknown) => {
     const res = ButtonPropsSchema.safeParse(d);

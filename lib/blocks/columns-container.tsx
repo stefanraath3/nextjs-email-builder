@@ -52,7 +52,7 @@ export const ColumnsContainerPropsSchema = z.object({
     .nullable(),
 });
 
-type TColumn = JSX.Element | JSX.Element[] | null;
+type TColumn = React.ReactElement | React.ReactElement[] | null;
 export type ColumnsContainerProps = z.infer<
   typeof ColumnsContainerPropsSchema
 > & {
@@ -80,8 +80,7 @@ export function ColumnsContainer({
       props?.columnsCount ?? ColumnsContainerPropsDefaults.columnsCount,
     columnsGap: props?.columnsGap ?? ColumnsContainerPropsDefaults.columnsGap,
     contentAlignment:
-      props?.contentAlignment ??
-      ColumnsContainerPropsDefaults.contentAlignment,
+      props?.contentAlignment ?? ColumnsContainerPropsDefaults.contentAlignment,
     fixedWidths: props?.fixedWidths,
   };
 
@@ -118,8 +117,7 @@ type Props = {
 };
 function TableCell({ index, props, columns }: Props) {
   const contentAlignment =
-    props?.contentAlignment ??
-    ColumnsContainerPropsDefaults.contentAlignment;
+    props?.contentAlignment ?? ColumnsContainerPropsDefaults.contentAlignment;
   const columnsCount =
     props?.columnsCount ?? ColumnsContainerPropsDefaults.columnsCount;
 
@@ -173,4 +171,3 @@ function getPaddingAfter(
   }
   return 0;
 }
-

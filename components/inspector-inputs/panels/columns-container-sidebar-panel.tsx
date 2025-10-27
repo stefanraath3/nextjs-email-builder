@@ -17,6 +17,7 @@ import ColumnWidthsInput from "../column-widths-input";
 import RadioGroupInput, { ToggleButton } from "../radio-group-input";
 import SliderWithLabelInput from "../slider-with-label-input";
 import MultiStylePropertyPanel from "../style-inputs";
+import { z } from "zod";
 
 type ColumnsContainerPanelProps = {
   data: ColumnsContainerProps;
@@ -27,7 +28,7 @@ export default function ColumnsContainerPanel({
   data,
   setData,
 }: ColumnsContainerPanelProps) {
-  const [, setErrors] = useState<any | null>(null);
+  const [, setErrors] = useState<z.ZodError | null>(null);
 
   const updateData = (d: unknown) => {
     const res = ColumnsContainerPropsSchema.safeParse(d);
@@ -57,7 +58,16 @@ export default function ColumnsContainerPanel({
         <ToggleButton value="3">3</ToggleButton>
       </RadioGroupInput>
       <ColumnWidthsInput
-        defaultValue={data.props?.fixedWidths}
+        defaultValue={
+          data.props?.fixedWidths as
+            | [
+                number | null | undefined,
+                number | null | undefined,
+                number | null | undefined,
+              ]
+            | null
+            | undefined
+        }
         columnsCount={columnsCount}
         onChange={(fixedWidths) => {
           updateData({ ...data, props: { ...data.props, fixedWidths } });
@@ -101,4 +111,3 @@ export default function ColumnsContainerPanel({
     </BaseSidebarPanel>
   );
 }
-

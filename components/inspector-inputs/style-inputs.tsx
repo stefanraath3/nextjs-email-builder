@@ -11,16 +11,23 @@ import PaddingInput from "./padding-input";
 import SliderInput from "./slider-input";
 import TextAlignInput from "./text-align-input";
 
+type PaddingValue = {
+  top: number;
+  bottom: number;
+  right: number;
+  left: number;
+};
+
 type TStyle = {
-  backgroundColor?: any;
-  borderColor?: any;
-  borderRadius?: any;
-  color?: any;
-  fontFamily?: any;
-  fontSize?: any;
-  fontWeight?: any;
-  padding?: any;
-  textAlign?: any;
+  backgroundColor?: string | null;
+  borderColor?: string | null;
+  borderRadius?: number | null;
+  color?: string | null;
+  fontFamily?: string | null;
+  fontSize?: number | null;
+  fontWeight?: string | null;
+  padding?: PaddingValue | null;
+  textAlign?: "left" | "center" | "right" | null;
 };
 
 type SingleStylePropertyPanelProps = {
@@ -35,7 +42,7 @@ function SingleStylePropertyPanel({
   onChange,
 }: SingleStylePropertyPanelProps) {
   const defaultValue = value[name] ?? null;
-  const handleChange = (v: any) => {
+  const handleChange = (v: TStyle[typeof name]) => {
     onChange({ ...value, [name]: v });
   };
 
@@ -44,7 +51,7 @@ function SingleStylePropertyPanel({
       return (
         <ColorInput
           label="Background color"
-          defaultValue={defaultValue}
+          defaultValue={defaultValue as string | null}
           onChange={handleChange}
         />
       );
@@ -52,7 +59,7 @@ function SingleStylePropertyPanel({
       return (
         <ColorInput
           label="Border color"
-          defaultValue={defaultValue}
+          defaultValue={defaultValue as string | null}
           onChange={handleChange}
         />
       );
@@ -64,7 +71,7 @@ function SingleStylePropertyPanel({
           </label>
           <SliderInput
             label={<SquareRoundCorner className="h-4 w-4" />}
-            value={defaultValue ?? 0}
+            value={(defaultValue as number | null) ?? 0}
             onChange={handleChange}
             min={0}
             max={48}
@@ -76,7 +83,7 @@ function SingleStylePropertyPanel({
       return (
         <ColorInput
           label="Text color"
-          defaultValue={defaultValue}
+          defaultValue={defaultValue as string | null}
           onChange={handleChange}
         />
       );
@@ -84,7 +91,7 @@ function SingleStylePropertyPanel({
       return (
         <FontFamilyInput
           label="Font family"
-          defaultValue={defaultValue}
+          defaultValue={defaultValue as string | null}
           onChange={handleChange}
         />
       );
@@ -92,7 +99,7 @@ function SingleStylePropertyPanel({
       return (
         <FontSizeInput
           label="Font size"
-          defaultValue={defaultValue ?? 16}
+          defaultValue={(defaultValue as number | null) ?? 16}
           onChange={handleChange}
         />
       );
@@ -100,7 +107,7 @@ function SingleStylePropertyPanel({
       return (
         <FontWeightInput
           label="Font weight"
-          defaultValue={defaultValue ?? "normal"}
+          defaultValue={(defaultValue as string | null) ?? "normal"}
           onChange={handleChange}
         />
       );
@@ -108,7 +115,7 @@ function SingleStylePropertyPanel({
       return (
         <TextAlignInput
           label="Alignment"
-          defaultValue={defaultValue}
+          defaultValue={defaultValue as "left" | "center" | "right" | null}
           onChange={handleChange}
         />
       );
@@ -116,7 +123,7 @@ function SingleStylePropertyPanel({
       return (
         <PaddingInput
           label="Padding"
-          defaultValue={defaultValue}
+          defaultValue={defaultValue as PaddingValue | null}
           onChange={handleChange}
         />
       );

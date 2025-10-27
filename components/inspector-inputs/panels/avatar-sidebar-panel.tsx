@@ -14,6 +14,7 @@ import RadioGroupInput, { ToggleButton } from "../radio-group-input";
 import SliderWithLabelInput from "../slider-with-label-input";
 import MultiStylePropertyPanel from "../style-inputs";
 import TextInput from "../text-input";
+import { z } from "zod";
 
 type AvatarSidebarPanelProps = {
   data: AvatarProps;
@@ -24,7 +25,7 @@ export default function AvatarSidebarPanel({
   data,
   setData,
 }: AvatarSidebarPanelProps) {
-  const [, setErrors] = useState<any | null>(null);
+  const [, setErrors] = useState<z.ZodError | null>(null);
 
   const updateData = (d: unknown) => {
     const res = AvatarPropsSchema.safeParse(d);

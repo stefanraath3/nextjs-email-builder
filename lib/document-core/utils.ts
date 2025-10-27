@@ -1,10 +1,18 @@
+import React from "react";
 import { z } from "zod";
 
-export type BaseZodDictionary = { [name: string]: z.AnyZodObject };
+export type BaseZodDictionary = { [name: string]: z.ZodObject<z.ZodRawShape> };
+
+export type SchemaDictionary<T extends BaseZodDictionary> = {
+  [K in keyof T]: {
+    schema: T[K];
+  };
+};
+
 export type DocumentBlocksDictionary<T extends BaseZodDictionary> = {
   [K in keyof T]: {
     schema: T[K];
-    Component: (props: z.infer<T[K]>) => JSX.Element;
+    Component: (props: z.infer<T[K]>) => React.JSX.Element;
   };
 };
 
@@ -22,4 +30,3 @@ export class BlockNotFoundError extends Error {
     this.blockId = blockId;
   }
 }
-
