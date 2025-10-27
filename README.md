@@ -216,3 +216,4 @@ Built by migrating and enhancing [usewaypoint/email-builder-js](https://github.c
 ---
 
 **Ready to build amazing emails!** 📧✨
+# nextjs-email-builder
