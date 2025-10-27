@@ -13,14 +13,24 @@ import {
   Code,
   SmartphoneIcon as ButtonIcon,
 } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 import { TEditorBlock } from "@/lib/editor/core";
+import {
+  useOpenAddBlockMenuId,
+  setOpenAddBlockMenuId,
+} from "@/lib/editor/editor-store";
 
 type AddBlockMenuProps = {
   onSelect: (block: TEditorBlock) => void;
   placeholder?: boolean;
 };
+
+// Generate unique ID for each AddBlockMenu instance
+let instanceCounter = 0;
+function generateMenuId() {
+  return `add-menu-${instanceCounter++}`;
+}
 
 type BlockOption = {
   label: string;
@@ -171,81 +181,170 @@ export default function AddBlockMenu({
   onSelect,
   placeholder,
 }: AddBlockMenuProps) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [menuId] = useState(() => generateMenuId());
+  const [visible, setVisible] = useState(false);
+  const buttonRef = useRef<HTMLDivElement>(null);
+
+  const openMenuId = useOpenAddBlockMenuId();
+  const isOpen = openMenuId === menuId;
+
+  // Hover detection for non-placeholder buttons
+  useEffect(() => {
+    if (placeholder) return;
+
+    function listener({ clientX, clientY }: MouseEvent) {
+      // Don't show hover if ANY menu is open
+      if (openMenuId !== null) {
+        setVisible(false);
+        return;
+      }
+
+      if (!buttonRef.current) {
+        return;
+      }
+      const rect = buttonRef.current.getBoundingClientRect();
+      const rectY = rect.y;
+      const bottomX = rect.x;
+      const topX = bottomX + rect.width;
+
+      // Show if mouse is within 20px vertically of the divider
+      if (Math.abs(clientY - rectY) < 20) {
+        if (bottomX < clientX && clientX < topX) {
+          setVisible(true);
+          return;
+        }
+      }
+      setVisible(false);
+    }
+
+    window.addEventListener("mousemove", listener);
+    return () => {
+      window.removeEventListener("mousemove", listener);
+    };
+  }, [placeholder, openMenuId]);
+
+  const handleOpen = () => {
+    setOpenAddBlockMenuId(menuId);
+  };
+
+  const handleClose = () => {
+    setOpenAddBlockMenuId(null);
+  };
 
   const handleSelect = (option: BlockOption) => {
     onSelect(option.block());
-    setIsOpen(false);
+    handleClose();
   };
 
+  // Placeholder button (always visible, for empty containers)
   if (placeholder) {
     return (
-      <div className="group flex min-h-[100px] items-center justify-center border-2 border-dashed border-gray-200 bg-gray-50 transition-colors hover:border-blue-400 hover:bg-blue-50">
-        <div className="relative">
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="rounded-full bg-blue-500 p-2 text-white shadow-lg transition-transform hover:scale-110 hover:bg-blue-600"
-          >
-            <Plus className="h-5 w-5" />
-          </button>
-          {isOpen && (
-            <div className="absolute left-0 top-full z-50 mt-2 w-64 rounded-lg border border-gray-200 bg-white shadow-xl">
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          if (isOpen) {
+            handleClose();
+          } else {
+            handleOpen();
+          }
+        }}
+        className="relative flex h-12 w-full items-center justify-center bg-gray-100 hover:bg-gray-200"
+      >
+        <div className="rounded-full bg-blue-500 p-0.5 text-white">
+          <Plus className="h-4 w-4" />
+        </div>
+
+        {isOpen && (
+          <>
+            <div
+              className="fixed inset-0 z-[100]"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleClose();
+              }}
+            />
+            <div className="absolute left-1/2 top-full z-[101] mt-2 w-64 -translate-x-1/2 rounded-lg border border-gray-200 bg-white shadow-xl">
               <div className="p-2">
                 <p className="mb-2 px-2 text-xs font-semibold text-gray-500">
                   ADD BLOCK
                 </p>
-                <div className="max-h-96 overflow-y-auto">
+                <div className="grid grid-cols-2 gap-2 p-1">
                   {BLOCK_OPTIONS.map((option) => (
                     <button
                       key={option.label}
-                      onClick={() => handleSelect(option)}
-                      className="flex w-full items-center gap-3 rounded px-3 py-2 text-left text-sm hover:bg-gray-100"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleSelect(option);
+                      }}
+                      className="flex flex-col items-center gap-2 rounded-lg border border-gray-200 p-3 text-center text-sm hover:border-blue-500 hover:bg-blue-50"
                     >
                       {option.icon}
-                      <span>{option.label}</span>
+                      <span className="text-xs">{option.label}</span>
                     </button>
                   ))}
                 </div>
               </div>
             </div>
-          )}
-        </div>
-      </div>
+          </>
+        )}
+      </button>
     );
   }
 
+  // Divider button (only visible on hover when NO menu is open)
   return (
-    <div className="group relative flex items-center justify-center py-1">
-      <div className="h-px w-full bg-gray-200 group-hover:bg-blue-400" />
-      <div className="absolute">
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="rounded-full bg-white p-1.5 text-gray-400 shadow-md ring-1 ring-gray-200 transition-all hover:bg-blue-500 hover:text-white hover:ring-blue-500"
-        >
-          <Plus className="h-3 w-3" />
-        </button>
-        {isOpen && (
-          <div className="absolute left-1/2 top-full z-50 mt-2 w-64 -translate-x-1/2 rounded-lg border border-gray-200 bg-white shadow-xl">
+    <div ref={buttonRef} className="relative" style={{ position: "relative" }}>
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          if (isOpen) {
+            handleClose();
+          } else {
+            handleOpen();
+          }
+        }}
+        className={`
+          absolute left-1/2 top-[-12px] z-50 -translate-x-1/2 rounded-full p-0.5 transition-opacity
+          ${visible || isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}
+          bg-blue-500 text-white shadow-md hover:bg-blue-600
+        `}
+      >
+        <Plus className="h-4 w-4" />
+      </button>
+
+      {isOpen && (
+        <>
+          <div
+            className="fixed inset-0 z-[100]"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleClose();
+            }}
+          />
+          <div className="absolute left-1/2 top-2 z-[101] w-64 -translate-x-1/2 rounded-lg border border-gray-200 bg-white shadow-xl">
             <div className="p-2">
               <p className="mb-2 px-2 text-xs font-semibold text-gray-500">
                 ADD BLOCK
               </p>
-              <div className="max-h-96 overflow-y-auto">
+              <div className="grid grid-cols-2 gap-2 p-1">
                 {BLOCK_OPTIONS.map((option) => (
                   <button
                     key={option.label}
-                    onClick={() => handleSelect(option)}
-                    className="flex w-full items-center gap-3 rounded px-3 py-2 text-left text-sm hover:bg-gray-100"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleSelect(option);
+                    }}
+                    className="flex flex-col items-center gap-2 rounded-lg border border-gray-200 p-3 text-center text-sm hover:border-blue-500 hover:bg-blue-50"
                   >
                     {option.icon}
-                    <span>{option.label}</span>
+                    <span className="text-xs">{option.label}</span>
                   </button>
                 ))}
               </div>
             </div>
           </div>
-        )}
-      </div>
+        </>
+      )}
     </div>
   );
 }

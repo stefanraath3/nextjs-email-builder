@@ -14,6 +14,9 @@ type TValue = {
 
   inspectorDrawerOpen: boolean;
   samplesDrawerOpen: boolean;
+
+  // Track which AddBlockMenu popover is currently open (null = none open)
+  openAddBlockMenuId: string | null;
 };
 
 const editorStateStore = create<TValue>(() => ({
@@ -36,6 +39,7 @@ const editorStateStore = create<TValue>(() => ({
 
   inspectorDrawerOpen: true,
   samplesDrawerOpen: true,
+  openAddBlockMenuId: null,
 }));
 
 export function useDocument() {
@@ -122,4 +126,12 @@ export function setSelectedScreenSize(
   selectedScreenSize: TValue["selectedScreenSize"]
 ) {
   return editorStateStore.setState({ selectedScreenSize });
+}
+
+export function useOpenAddBlockMenuId() {
+  return editorStateStore((s) => s.openAddBlockMenuId);
+}
+
+export function setOpenAddBlockMenuId(menuId: string | null) {
+  return editorStateStore.setState({ openAddBlockMenuId: menuId });
 }
