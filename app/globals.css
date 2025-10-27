@@ -120,4 +120,16 @@
   body {
     @apply bg-background text-foreground;
   }
+  button {
+    cursor: pointer;
+  }
+  a {
+    cursor: pointer;
+  }
+  input[type="range"] {
+    cursor: pointer;
+  }
+  select {
+    cursor: pointer;
+  }
 }
