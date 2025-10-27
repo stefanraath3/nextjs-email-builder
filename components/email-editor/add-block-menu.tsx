@@ -239,31 +239,33 @@ export default function AddBlockMenu({
   // Placeholder button (always visible, for empty containers)
   if (placeholder) {
     return (
-      <button
-        onClick={(e) => {
-          e.stopPropagation();
-          if (isOpen) {
-            handleClose();
-          } else {
-            handleOpen();
-          }
-        }}
-        className="relative flex h-12 w-full items-center justify-center bg-gray-100 hover:bg-gray-200"
-      >
-        <div className="rounded-full bg-blue-500 p-0.5 text-white">
-          <Plus className="h-4 w-4" />
-        </div>
+      <div className="relative">
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            if (isOpen) {
+              handleClose();
+            } else {
+              handleOpen();
+            }
+          }}
+          className="flex h-12 w-full items-center justify-center bg-gray-100 hover:bg-gray-200"
+        >
+          <div className="rounded-full bg-blue-500 p-0.5 text-white">
+            <Plus className="h-4 w-4" />
+          </div>
+        </button>
 
         {isOpen && (
           <>
             <div
-              className="fixed inset-0 z-100"
+              className="fixed inset-0 z-[100]"
               onClick={(e) => {
                 e.stopPropagation();
                 handleClose();
               }}
             />
-            <div className="absolute left-1/2 top-full z-101 mt-2 w-64 -translate-x-1/2 rounded-lg border border-gray-200 bg-white shadow-xl">
+            <div className="absolute left-1/2 top-full z-[101] mt-2 w-64 -translate-x-1/2 rounded-lg border border-gray-200 bg-white shadow-xl">
               <div className="p-2">
                 <p className="mb-2 px-2 text-xs font-semibold text-gray-500">
                   ADD BLOCK
@@ -287,7 +289,7 @@ export default function AddBlockMenu({
             </div>
           </>
         )}
-      </button>
+      </div>
     );
   }
 
