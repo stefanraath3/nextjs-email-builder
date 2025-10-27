@@ -36,7 +36,8 @@ export default function HighlightedCodePanel({
 
   return (
     <pre
-      className="m-0 cursor-pointer overflow-auto p-4 text-xs"
+      className="m-0 cursor-pointer overflow-x-auto p-4 text-xs whitespace-pre-wrap break-all"
+      style={{ maxWidth: "100%", overflowWrap: "break-word" }}
       dangerouslySetInnerHTML={{ __html: code }}
       onClick={(ev) => {
         const s = window.getSelection();
