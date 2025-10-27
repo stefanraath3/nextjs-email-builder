@@ -19,6 +19,10 @@ import {
   Text,
   TextPropsSchema,
 } from "@/lib/blocks";
+import EditorBlockWrapper from "@/components/email-editor/block-wrapper";
+import ColumnsContainerEditor from "@/components/email-editor/columns-container-editor";
+import ContainerEditor from "@/components/email-editor/container-editor";
+import EmailLayoutEditor from "@/components/email-editor/email-layout-editor";
 import {
   buildBlockComponent,
   buildBlockConfigurationDictionary,
@@ -28,12 +32,6 @@ import {
 import ColumnsContainerPropsSchema from "./columns-container-schema";
 import ContainerPropsSchema from "./container-schema";
 import EmailLayoutPropsSchema from "./email-layout-schema";
-
-// We'll create these editor components next
-// For now, we'll use placeholder wrappers
-const EditorBlockWrapper = ({ children }: { children: React.ReactNode }) => (
-  <div>{children}</div>
-);
 
 const EDITOR_DICTIONARY = buildBlockConfigurationDictionary({
   Avatar: {
@@ -56,8 +54,7 @@ const EDITOR_DICTIONARY = buildBlockConfigurationDictionary({
     schema: ContainerPropsSchema,
     Component: (props) => (
       <EditorBlockWrapper>
-        {/* We'll create ContainerEditor component later */}
-        <div>Container Editor Placeholder</div>
+        <ContainerEditor {...props} />
       </EditorBlockWrapper>
     ),
   },
@@ -65,8 +62,7 @@ const EDITOR_DICTIONARY = buildBlockConfigurationDictionary({
     schema: ColumnsContainerPropsSchema,
     Component: (props) => (
       <EditorBlockWrapper>
-        {/* We'll create ColumnsContainerEditor component later */}
-        <div>ColumnsContainer Editor Placeholder</div>
+        <ColumnsContainerEditor {...props} />
       </EditorBlockWrapper>
     ),
   },
@@ -115,7 +111,7 @@ const EDITOR_DICTIONARY = buildBlockConfigurationDictionary({
   },
   EmailLayout: {
     schema: EmailLayoutPropsSchema,
-    Component: (p) => <div>EmailLayout Editor Placeholder</div>,
+    Component: (p) => <EmailLayoutEditor {...p} />,
   },
   Spacer: {
     schema: SpacerPropsSchema,
