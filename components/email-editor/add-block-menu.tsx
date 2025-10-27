@@ -181,11 +181,13 @@ export default function AddBlockMenu({
   if (placeholder) {
     return (
       <div className="group flex min-h-[100px] items-center justify-center border-2 border-dashed border-gray-200 bg-gray-50 transition-colors hover:border-blue-400 hover:bg-blue-50">
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="relative rounded-full bg-blue-500 p-2 text-white shadow-lg transition-transform hover:scale-110 hover:bg-blue-600"
-        >
-          <Plus className="h-5 w-5" />
+        <div className="relative">
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="rounded-full bg-blue-500 p-2 text-white shadow-lg transition-transform hover:scale-110 hover:bg-blue-600"
+          >
+            <Plus className="h-5 w-5" />
+          </button>
           {isOpen && (
             <div className="absolute left-0 top-full z-50 mt-2 w-64 rounded-lg border border-gray-200 bg-white shadow-xl">
               <div className="p-2">
@@ -207,7 +209,7 @@ export default function AddBlockMenu({
               </div>
             </div>
           )}
-        </button>
+        </div>
       </div>
     );
   }
@@ -215,11 +217,13 @@ export default function AddBlockMenu({
   return (
     <div className="group relative flex items-center justify-center py-1">
       <div className="h-px w-full bg-gray-200 group-hover:bg-blue-400" />
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="absolute rounded-full bg-white p-1.5 text-gray-400 shadow-md ring-1 ring-gray-200 transition-all hover:bg-blue-500 hover:text-white hover:ring-blue-500"
-      >
-        <Plus className="h-3 w-3" />
+      <div className="absolute">
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="rounded-full bg-white p-1.5 text-gray-400 shadow-md ring-1 ring-gray-200 transition-all hover:bg-blue-500 hover:text-white hover:ring-blue-500"
+        >
+          <Plus className="h-3 w-3" />
+        </button>
         {isOpen && (
           <div className="absolute left-1/2 top-full z-50 mt-2 w-64 -translate-x-1/2 rounded-lg border border-gray-200 bg-white shadow-xl">
             <div className="p-2">
@@ -241,7 +245,7 @@ export default function AddBlockMenu({
             </div>
           </div>
         )}
-      </button>
+      </div>
     </div>
   );
 }
