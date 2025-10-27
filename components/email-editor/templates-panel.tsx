@@ -51,27 +51,7 @@ export default function TemplatesPanel() {
         </div>
 
         <hr className="border-gray-200" />
-
-        <div className="flex flex-col space-y-1">
-          <a
-            href="https://www.usewaypoint.com/open-source/emailbuilderjs"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded px-3 py-2 text-sm text-gray-600 hover:bg-gray-100"
-          >
-            Learn more
-          </a>
-          <a
-            href="https://github.com/usewaypoint/email-builder-js"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded px-3 py-2 text-sm text-gray-600 hover:bg-gray-100"
-          >
-            View on GitHub
-          </a>
-        </div>
       </div>
     </div>
   );
 }
-
