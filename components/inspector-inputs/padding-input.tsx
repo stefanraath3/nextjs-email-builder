@@ -51,7 +51,7 @@ export default function PaddingInput({
 
   return (
     <div className="space-y-3 pb-2">
-      <label className="text-sm font-medium text-gray-700">{label}</label>
+      <label className="text-sm font-medium text-foreground">{label}</label>
 
       <SliderInput
         label={<AlignVerticalDistributeStart className="h-4 w-4" />}

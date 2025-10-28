@@ -8,7 +8,7 @@ import { setDocument, useDocument } from "@/lib/editor/editor-store";
 export default function StylesPanel() {
   const block = useDocument().root;
   if (!block) {
-    return <p className="p-4 text-sm text-gray-500">Block not found</p>;
+    return <p className="p-4 text-sm text-text-secondary">Block not found</p>;
   }
 
   const { data, type } = block;
@@ -24,4 +24,3 @@ export default function StylesPanel() {
     />
   );
 }
-

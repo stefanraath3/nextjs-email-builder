@@ -36,7 +36,7 @@ export default function RadioGroupInput({
 
   return (
     <div className="flex flex-col items-start">
-      <label className="mb-1 text-sm font-medium text-gray-700">{label}</label>
+      <label className="mb-1 text-sm font-medium text-foreground">{label}</label>
       <div className="inline-flex rounded-md shadow-sm" role="group">
         {enhancedChildren}
       </div>
@@ -63,13 +63,13 @@ export function ToggleButton({
       className={`
         px-4 py-2 text-sm font-medium
         first:rounded-l-md last:rounded-r-md
-        border border-gray-300
-        hover:bg-gray-50
-        focus:z-10 focus:outline-none focus:ring-2 focus:ring-blue-500
+        border border-input
+        hover:bg-bg-hover
+        focus:z-10 focus:outline-none focus:ring-2 focus:ring-accent-primary
         ${
           isActive
-            ? "bg-blue-500 text-white border-blue-500 hover:bg-blue-600"
-            : "bg-white text-gray-700"
+            ? "bg-accent-primary text-primary-foreground border-accent-primary hover:bg-accent-hover"
+            : "bg-background text-foreground"
         }
       `}
     >

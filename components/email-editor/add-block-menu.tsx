@@ -249,9 +249,9 @@ export default function AddBlockMenu({
               handleOpen();
             }
           }}
-          className="flex h-12 w-full items-center justify-center bg-gray-100 hover:bg-gray-200"
+          className="flex h-12 w-full items-center justify-center bg-secondary hover:bg-bg-hover"
         >
-          <div className="rounded-full bg-blue-500 p-0.5 text-white">
+          <div className="rounded-full bg-accent-primary p-0.5 text-primary-foreground">
             <Plus className="h-4 w-4" />
           </div>
         </button>
@@ -265,9 +265,9 @@ export default function AddBlockMenu({
                 handleClose();
               }}
             />
-            <div className="absolute left-1/2 top-full z-101 mt-2 w-64 -translate-x-1/2 rounded-lg border border-gray-200 bg-white shadow-xl">
+            <div className="absolute left-1/2 top-full z-101 mt-2 w-64 -translate-x-1/2 rounded-lg border border-border bg-popover shadow-xl">
               <div className="p-2">
-                <p className="mb-2 px-2 text-xs font-semibold text-gray-500">
+                <p className="mb-2 px-2 text-xs font-semibold text-text-tertiary">
                   ADD BLOCK
                 </p>
                 <div className="grid grid-cols-2 gap-2 p-1">
@@ -278,7 +278,7 @@ export default function AddBlockMenu({
                         e.stopPropagation();
                         handleSelect(option);
                       }}
-                      className="flex flex-col items-center gap-2 rounded-lg border border-gray-200 p-3 text-center text-sm hover:border-blue-500 hover:bg-blue-50"
+                      className="flex flex-col items-center gap-2 rounded-lg border border-border p-3 text-center text-sm hover:border-accent-primary hover:bg-accent-bg"
                     >
                       {option.icon}
                       <span className="text-xs">{option.label}</span>
@@ -308,7 +308,7 @@ export default function AddBlockMenu({
         className={`
           absolute left-1/2 top-[-12px] z-50 -translate-x-1/2 rounded-full p-0.5 transition-opacity
           ${visible || isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}
-          bg-blue-500 text-white shadow-md hover:bg-blue-600
+          bg-accent-primary text-primary-foreground shadow-md hover:bg-accent-hover
         `}
       >
         <Plus className="h-4 w-4" />
@@ -323,9 +323,9 @@ export default function AddBlockMenu({
               handleClose();
             }}
           />
-          <div className="absolute left-1/2 top-2 z-101 w-64 -translate-x-1/2 rounded-lg border border-gray-200 bg-white shadow-xl">
+          <div className="absolute left-1/2 top-2 z-101 w-64 -translate-x-1/2 rounded-lg border border-border bg-popover shadow-xl">
             <div className="p-2">
-              <p className="mb-2 px-2 text-xs font-semibold text-gray-500">
+              <p className="mb-2 px-2 text-xs font-semibold text-text-tertiary">
                 ADD BLOCK
               </p>
               <div className="grid grid-cols-2 gap-2 p-1">
@@ -336,7 +336,7 @@ export default function AddBlockMenu({
                       e.stopPropagation();
                       handleSelect(option);
                     }}
-                    className="flex flex-col items-center gap-2 rounded-lg border border-gray-200 p-3 text-center text-sm hover:border-blue-500 hover:bg-blue-50"
+                    className="flex flex-col items-center gap-2 rounded-lg border border-border p-3 text-center text-sm hover:border-accent-primary hover:bg-accent-bg"
                   >
                     {option.icon}
                     <span className="text-xs">{option.label}</span>

@@ -75,7 +75,7 @@ export default function ColumnsContainerPanel({
       />
       <SliderWithLabelInput
         label="Columns gap"
-        iconLabel={<Space className="h-4 w-4 text-gray-500" />}
+        iconLabel={<Space className="h-4 w-4 text-text-tertiary" />}
         units="px"
         step={4}
         min={0}

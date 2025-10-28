@@ -31,7 +31,7 @@ export default function SliderWithLabelInput({
 
   return (
     <div className="space-y-2">
-      <label className="text-sm font-medium text-gray-700">{label}</label>
+      <label className="text-sm font-medium text-foreground">{label}</label>
       <SliderInput
         label={iconLabel}
         value={value}

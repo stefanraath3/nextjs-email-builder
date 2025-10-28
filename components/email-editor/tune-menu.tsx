@@ -190,26 +190,26 @@ export default function TuneMenu({ blockId }: TuneMenuProps) {
 
   return (
     <div
-      className="absolute left-[-56px] top-0 z-50 flex flex-col gap-0 rounded-full bg-white px-2 py-3 shadow-lg"
+      className="absolute left-[-56px] top-0 z-50 flex flex-col gap-0 rounded-full bg-popover px-2 py-3 shadow-lg border border-border"
       onClick={(ev) => ev.stopPropagation()}
     >
       <button
         onClick={() => handleMove("up")}
-        className="flex h-8 w-8 items-center justify-center rounded-full text-gray-700 hover:bg-gray-100"
+        className="flex h-8 w-8 items-center justify-center rounded-full text-foreground hover:bg-bg-hover"
         title="Move up"
       >
         <ArrowUp className="h-4 w-4" />
       </button>
       <button
         onClick={() => handleMove("down")}
-        className="flex h-8 w-8 items-center justify-center rounded-full text-gray-700 hover:bg-gray-100"
+        className="flex h-8 w-8 items-center justify-center rounded-full text-foreground hover:bg-bg-hover"
         title="Move down"
       >
         <ArrowDown className="h-4 w-4" />
       </button>
       <button
         onClick={handleDelete}
-        className="flex h-8 w-8 items-center justify-center rounded-full text-gray-700 hover:bg-red-50 hover:text-red-600"
+        className="flex h-8 w-8 items-center justify-center rounded-full text-foreground hover:bg-danger-bg hover:text-danger"
         title="Delete"
       >
         <Trash2 className="h-4 w-4" />

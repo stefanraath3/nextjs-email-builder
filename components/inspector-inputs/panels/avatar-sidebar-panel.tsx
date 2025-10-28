@@ -46,7 +46,7 @@ export default function AvatarSidebarPanel({
     <BaseSidebarPanel title="Avatar block">
       <SliderWithLabelInput
         label="Size"
-        iconLabel={<Maximize2 className="h-4 w-4 text-gray-500" />}
+        iconLabel={<Maximize2 className="h-4 w-4 text-text-tertiary" />}
         units="px"
         step={3}
         min={32}

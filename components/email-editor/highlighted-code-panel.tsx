@@ -29,7 +29,7 @@ export default function HighlightedCodePanel({
   if (code === null) {
     return (
       <div className="flex items-center justify-center p-8">
-        <p className="text-gray-500">Loading...</p>
+        <p className="text-text-secondary">Loading...</p>
       </div>
     );
   }

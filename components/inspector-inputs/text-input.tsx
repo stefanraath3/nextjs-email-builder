@@ -31,13 +31,13 @@ export default function TextInput({
   };
 
   const inputClasses = `
-    w-full rounded-md border border-gray-300 px-3 py-2 text-sm
-    focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500
+    w-full rounded-md border border-input px-3 py-2 text-sm
+    focus:border-accent-primary focus:outline-none focus:ring-1 focus:ring-accent-primary
   `;
 
   return (
     <div className="flex flex-col">
-      <label className="mb-1 text-sm font-medium text-gray-700">{label}</label>
+      <label className="mb-1 text-sm font-medium text-foreground">{label}</label>
       {isMultiline ? (
         <textarea
           rows={rows}
@@ -56,7 +56,7 @@ export default function TextInput({
         />
       )}
       {helperText && (
-        <p className="mt-1 text-xs text-gray-500">{helperText}</p>
+        <p className="mt-1 text-xs text-text-tertiary">{helperText}</p>
       )}
     </div>
   );

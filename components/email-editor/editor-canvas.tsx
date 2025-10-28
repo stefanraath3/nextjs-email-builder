@@ -64,7 +64,7 @@ export default function EditorCanvas() {
   return (
     <div className="flex h-screen flex-1 flex-col">
       {/* Toolbar */}
-      <div className="sticky top-0 z-10 flex h-12 items-center justify-between border-b border-gray-200 bg-white px-2">
+      <div className="sticky top-0 z-10 flex h-12 items-center justify-between border-b border-border bg-background px-2">
         <ToggleSamplesPanelButton />
 
         <div className="flex flex-1 items-center justify-between gap-4 px-4">
@@ -80,8 +80,8 @@ export default function EditorCanvas() {
                     flex items-center gap-2 rounded px-3 py-1.5 text-sm font-medium transition-colors
                     ${
                       selectedMainTab === tab.value
-                        ? "bg-blue-100 text-blue-700"
-                        : "text-gray-600 hover:bg-gray-100"
+                        ? "bg-accent-bg text-accent-primary"
+                        : "text-text-secondary hover:bg-bg-hover"
                     }
                   `}
                   title={tab.label}

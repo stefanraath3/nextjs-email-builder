@@ -31,7 +31,7 @@ export function DownloadJsonButton() {
     <a
       href={href}
       download="emailTemplate.json"
-      className="flex h-8 w-8 items-center justify-center rounded hover:bg-gray-100"
+      className="flex h-8 w-8 items-center justify-center rounded hover:bg-bg-hover"
       title="Download JSON"
     >
       <Download className="h-4 w-4" />
@@ -66,25 +66,25 @@ export function ImportJsonButton() {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="flex h-8 w-8 items-center justify-center rounded hover:bg-gray-100"
+        className="flex h-8 w-8 items-center justify-center rounded hover:bg-bg-hover"
         title="Import JSON"
       >
         <Upload className="h-4 w-4" />
       </button>
 
       {open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="w-full max-w-2xl rounded-lg bg-white shadow-xl">
-            <div className="border-b border-gray-200 px-6 py-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+          <div className="w-full max-w-2xl rounded-lg bg-popover shadow-xl">
+            <div className="border-b border-border px-6 py-4">
               <h2 className="text-xl font-semibold">Import JSON</h2>
             </div>
             <form onSubmit={handleSubmit}>
               <div className="p-6">
-                <p className="mb-4 text-sm text-gray-600">
+                <p className="mb-4 text-sm text-text-secondary">
                   Copy and paste an EmailBuilder.js JSON template.
                 </p>
                 {error && (
-                  <div className="mb-4 rounded border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+                  <div className="mb-4 rounded border border-danger/20 bg-danger-bg p-3 text-sm text-danger">
                     {error}
                   </div>
                 )}
@@ -92,25 +92,25 @@ export function ImportJsonButton() {
                   value={value}
                   onChange={(e) => handleChange(e.target.value)}
                   rows={10}
-                  className="w-full rounded border border-gray-300 p-3 text-sm font-mono focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  className="w-full rounded border border-input p-3 text-sm font-mono focus:border-accent-primary focus:outline-none focus:ring-1 focus:ring-accent-primary"
                   placeholder='{"root": {...}}'
                 />
-                <p className="mt-2 text-xs text-gray-500">
+                <p className="mt-2 text-xs text-text-tertiary">
                   This will override your current template.
                 </p>
               </div>
-              <div className="flex justify-end gap-2 border-t border-gray-200 px-6 py-4">
+              <div className="flex justify-end gap-2 border-t border-border px-6 py-4">
                 <button
                   type="button"
                   onClick={() => setOpen(false)}
-                  className="rounded px-4 py-2 text-sm hover:bg-gray-100"
+                  className="rounded px-4 py-2 text-sm hover:bg-bg-hover"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={error !== null}
-                  className="rounded bg-blue-500 px-4 py-2 text-sm text-white hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
+                  className="rounded bg-accent-primary px-4 py-2 text-sm text-primary-foreground hover:bg-accent-hover disabled:bg-muted disabled:cursor-not-allowed"
                 >
                   Import
                 </button>
@@ -138,14 +138,14 @@ export function ShareButton() {
     <>
       <button
         onClick={onClick}
-        className="flex h-8 w-8 items-center justify-center rounded hover:bg-gray-100"
+        className="flex h-8 w-8 items-center justify-center rounded hover:bg-bg-hover"
         title="Share"
       >
         <Share2 className="h-4 w-4" />
       </button>
 
       {message && (
-        <div className="fixed top-4 left-1/2 z-50 -translate-x-1/2 rounded-lg bg-gray-900 px-6 py-3 text-white shadow-lg">
+        <div className="fixed top-4 left-1/2 z-50 -translate-x-1/2 rounded-lg bg-bg-tertiary px-6 py-3 text-foreground shadow-lg border border-border">
           {message}
         </div>
       )}
@@ -163,9 +163,9 @@ export function ScreenSizeToggle() {
         onClick={() => setSelectedScreenSize("desktop")}
         className={`
           flex h-8 items-center justify-center px-3
-          border border-gray-300 first:rounded-l-md
-          hover:bg-gray-50
-          ${selectedScreenSize === "desktop" ? "bg-blue-500 text-white border-blue-500" : "bg-white"}
+          border border-input first:rounded-l-md
+          hover:bg-bg-hover
+          ${selectedScreenSize === "desktop" ? "bg-accent-primary text-primary-foreground border-accent-primary" : "bg-background"}
         `}
         title="Desktop view"
       >
@@ -176,9 +176,9 @@ export function ScreenSizeToggle() {
         onClick={() => setSelectedScreenSize("mobile")}
         className={`
           flex h-8 items-center justify-center px-3
-          border border-gray-300 last:rounded-r-md
-          hover:bg-gray-50
-          ${selectedScreenSize === "mobile" ? "bg-blue-500 text-white border-blue-500" : "bg-white"}
+          border border-input last:rounded-r-md
+          hover:bg-bg-hover
+          ${selectedScreenSize === "mobile" ? "bg-accent-primary text-primary-foreground border-accent-primary" : "bg-background"}
         `}
         title="Mobile view"
       >
@@ -192,7 +192,7 @@ export function ToggleSamplesPanelButton() {
   return (
     <button
       onClick={toggleSamplesDrawerOpen}
-      className="flex h-8 w-8 items-center justify-center rounded hover:bg-gray-100"
+      className="flex h-8 w-8 items-center justify-center rounded hover:bg-bg-hover"
       title="Toggle templates panel"
     >
       <Menu className="h-5 w-5" />
@@ -204,7 +204,7 @@ export function ToggleInspectorPanelButton() {
   return (
     <button
       onClick={toggleInspectorDrawerOpen}
-      className="flex h-8 w-8 items-center justify-center rounded hover:bg-gray-100"
+      className="flex h-8 w-8 items-center justify-center rounded hover:bg-bg-hover"
       title="Toggle inspector panel"
     >
       <PanelRightClose className="h-5 w-5" />

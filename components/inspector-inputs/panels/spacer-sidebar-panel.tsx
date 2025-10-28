@@ -38,7 +38,7 @@ export default function SpacerSidebarPanel({
     <BaseSidebarPanel title="Spacer block">
       <SliderWithLabelInput
         label="Height"
-        iconLabel={<Maximize2 className="h-4 w-4 text-gray-500" />}
+        iconLabel={<Maximize2 className="h-4 w-4 text-text-tertiary" />}
         units="px"
         step={4}
         min={4}

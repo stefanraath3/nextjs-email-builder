@@ -30,11 +30,10 @@ export default function BooleanInput({
           onChange={handleChange}
           className="sr-only peer"
         />
-        <div className="h-6 w-11 rounded-full bg-gray-300 peer-checked:bg-blue-500 peer-focus:ring-2 peer-focus:ring-blue-500 peer-focus:ring-offset-2 transition-colors"></div>
-        <div className="absolute left-1 top-1 h-4 w-4 rounded-full bg-white transition-transform peer-checked:translate-x-5"></div>
+        <div className="h-6 w-11 rounded-full bg-muted peer-checked:bg-accent-primary peer-focus:ring-2 peer-focus:ring-accent-primary peer-focus:ring-offset-2 transition-colors"></div>
+        <div className="absolute left-1 top-1 h-4 w-4 rounded-full bg-background transition-transform peer-checked:translate-x-5"></div>
       </div>
-      <span className="text-sm font-medium text-gray-700">{label}</span>
+      <span className="text-sm font-medium text-foreground">{label}</span>
     </label>
   );
 }
-

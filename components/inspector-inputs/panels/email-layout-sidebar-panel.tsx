@@ -54,7 +54,7 @@ export default function EmailLayoutSidebarPanel({
         onChange={(borderColor) => updateData({ ...data, borderColor })}
       />
       <SliderWithLabelInput
-        iconLabel={<SquareRoundCorner className="h-4 w-4 text-gray-500" />}
+        iconLabel={<SquareRoundCorner className="h-4 w-4 text-text-tertiary" />}
         units="px"
         step={4}
         min={0}

@@ -31,12 +31,12 @@ export default function SliderInput({
         step={step}
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="h-2 w-full cursor-pointer appearance-none rounded-lg bg-gray-200"
+        className="h-2 w-full cursor-pointer appearance-none rounded-lg bg-muted"
         style={{
-          background: `linear-gradient(to right, rgb(59, 130, 246) 0%, rgb(59, 130, 246) ${((value - min) / (max - min)) * 100}%, rgb(229, 231, 235) ${((value - min) / (max - min)) * 100}%, rgb(229, 231, 235) 100%)`,
+          background: `linear-gradient(to right, rgb(249, 115, 22) 0%, rgb(249, 115, 22) ${((value - min) / (max - min)) * 100}%, rgb(243, 244, 246) ${((value - min) / (max - min)) * 100}%, rgb(243, 244, 246) 100%)`,
         }}
       />
-      <div className="min-w-12 shrink-0 text-right text-sm text-gray-600">
+      <div className="min-w-12 shrink-0 text-right text-sm text-text-secondary">
         {value}
         {units}
       </div>

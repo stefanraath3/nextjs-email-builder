@@ -66,7 +66,7 @@ function SingleStylePropertyPanel({
     case "borderRadius":
       return (
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-700">
+          <label className="text-sm font-medium text-foreground">
             Border radius
           </label>
           <SliderInput

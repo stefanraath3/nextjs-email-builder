@@ -32,7 +32,7 @@ export default function TemplatesPanel() {
 
   return (
     <div
-      className="flex h-screen flex-col justify-between border-r border-gray-200 bg-white py-2 px-4"
+      className="flex h-screen flex-col justify-between border-r border-border bg-background py-2 px-4"
       style={{ width: SAMPLES_DRAWER_WIDTH }}
     >
       <div className="space-y-4">
@@ -43,14 +43,14 @@ export default function TemplatesPanel() {
             <button
               key={template.href}
               onClick={() => handleTemplateClick(template.href)}
-              className="w-full rounded px-3 py-2 text-left text-sm hover:bg-gray-100"
+              className="w-full rounded px-3 py-2 text-left text-sm hover:bg-bg-hover"
             >
               {template.label}
             </button>
           ))}
         </div>
 
-        <hr className="border-gray-200" />
+        <hr className="border-border" />
       </div>
     </div>
   );

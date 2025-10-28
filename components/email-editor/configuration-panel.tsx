@@ -22,8 +22,8 @@ import {
 
 function renderMessage(val: string) {
   return (
-    <div className="m-6 border border-dashed border-gray-300 p-4">
-      <p className="text-sm text-gray-500">{val}</p>
+    <div className="m-6 border border-dashed border-border p-4">
+      <p className="text-sm text-text-secondary">{val}</p>
     </div>
   );
 }

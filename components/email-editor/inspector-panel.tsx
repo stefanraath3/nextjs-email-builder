@@ -32,10 +32,10 @@ export default function InspectorPanel() {
 
   return (
     <div
-      className="h-screen border-l border-gray-200 bg-white"
+      className="h-screen border-l border-border bg-background"
       style={{ width: INSPECTOR_DRAWER_WIDTH }}
     >
-      <div className="flex h-12 items-center border-b border-gray-200 px-4">
+      <div className="flex h-12 items-center border-b border-border px-4">
         <div className="flex gap-1">
           <button
             onClick={() => setSidebarTab("styles")}
@@ -43,8 +43,8 @@ export default function InspectorPanel() {
               rounded-md px-3 py-1.5 text-sm font-medium transition-colors
               ${
                 selectedSidebarTab === "styles"
-                  ? "bg-blue-100 text-blue-700"
-                  : "text-gray-600 hover:bg-gray-100"
+                  ? "bg-accent-bg text-accent-primary"
+                  : "text-text-secondary hover:bg-bg-hover"
               }
             `}
           >
@@ -56,8 +56,8 @@ export default function InspectorPanel() {
               rounded-md px-3 py-1.5 text-sm font-medium transition-colors
               ${
                 selectedSidebarTab === "block-configuration"
-                  ? "bg-blue-100 text-blue-700"
-                  : "text-gray-600 hover:bg-gray-100"
+                  ? "bg-accent-bg text-accent-primary"
+                  : "text-text-secondary hover:bg-bg-hover"
               }
             `}
           >

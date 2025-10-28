@@ -68,7 +68,7 @@ export default function ColorInput({
     return (
       <button
         onClick={() => handleChange(null)}
-        className="flex h-8 w-8 items-center justify-center rounded text-gray-500 hover:bg-gray-100"
+        className="flex h-8 w-8 items-center justify-center rounded text-text-secondary hover:bg-bg-hover"
       >
         <X className="h-4 w-4" />
       </button>
@@ -80,7 +80,7 @@ export default function ColorInput({
       return (
         <button
           onClick={() => setAnchorEl(!anchorEl)}
-          className="h-8 w-8 rounded border border-gray-300 bg-white"
+          className="h-8 w-8 rounded border border-input bg-background"
           style={{ backgroundColor: value }}
         />
       );
@@ -88,7 +88,7 @@ export default function ColorInput({
     return (
       <button
         onClick={() => setAnchorEl(!anchorEl)}
-        className="flex h-8 w-8 items-center justify-center rounded border border-gray-300 bg-white hover:bg-gray-50"
+        className="flex h-8 w-8 items-center justify-center rounded border border-input bg-background hover:bg-bg-hover"
       >
         <Plus className="h-4 w-4" />
       </button>
@@ -97,7 +97,9 @@ export default function ColorInput({
 
   return (
     <div className="flex flex-col items-start">
-      <label className="mb-1 text-sm font-medium text-gray-700">{label}</label>
+      <label className="mb-1 text-sm font-medium text-foreground">
+        {label}
+      </label>
       <div className="flex items-center gap-2">
         {renderOpenButton()}
         {renderResetButton()}
@@ -109,7 +111,7 @@ export default function ColorInput({
             className="fixed inset-0 z-40"
             onClick={() => setAnchorEl(false)}
           />
-          <div className="relative z-50 mt-2 rounded-lg border border-gray-200 bg-white p-3 shadow-xl">
+          <div className="relative z-50 mt-2 rounded-lg border border-border bg-popover p-3 shadow-xl">
             <div className="space-y-3">
               <HexColorPicker
                 color={value || "#000000"}
@@ -120,7 +122,7 @@ export default function ColorInput({
                   <button
                     key={color}
                     onClick={() => handleChange(color)}
-                    className="h-6 w-6 rounded border border-gray-200 hover:scale-110"
+                    className="h-6 w-6 rounded border border-border hover:scale-110"
                     style={{ backgroundColor: color }}
                   />
                 ))}
@@ -129,7 +131,7 @@ export default function ColorInput({
                 prefixed
                 color={value || "#000000"}
                 onChange={handleChange}
-                className="w-full rounded border border-gray-300 px-2 py-1 text-sm"
+                className="w-full rounded border border-input px-2 py-1 text-sm"
               />
             </div>
           </div>

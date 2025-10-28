@@ -51,7 +51,7 @@ export default function DividerSidebarPanel({
       />
       <SliderWithLabelInput
         label="Height"
-        iconLabel={<Minus className="h-4 w-4 text-gray-500" />}
+        iconLabel={<Minus className="h-4 w-4 text-text-tertiary" />}
         units="px"
         step={1}
         min={1}

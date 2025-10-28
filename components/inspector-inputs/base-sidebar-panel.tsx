@@ -11,7 +11,7 @@ export default function BaseSidebarPanel({
 }: BaseSidebarPanelProps) {
   return (
     <div className="p-4">
-      <h3 className="mb-4 text-xs font-semibold uppercase tracking-wide text-gray-500">
+      <h3 className="mb-4 text-xs font-semibold uppercase tracking-wide text-text-tertiary">
         {title}
       </h3>
       <div className="space-y-6">{children}</div>

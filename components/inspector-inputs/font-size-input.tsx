@@ -25,7 +25,7 @@ export default function FontSizeInput({
 
   return (
     <div className="space-y-2">
-      <label className="text-sm font-medium text-gray-700">{label}</label>
+      <label className="text-sm font-medium text-foreground">{label}</label>
       <SliderInput
         label={<Type className="h-4 w-4" />}
         value={value}
