@@ -8,8 +8,11 @@ import {
   Smartphone,
   Menu,
   PanelRightClose,
+  Moon,
+  Sun,
 } from "lucide-react";
 import React, { useMemo, useState } from "react";
+import { useTheme } from "next-themes";
 
 import validateJsonStringValue from "@/lib/utils/validate-json";
 import {
@@ -211,6 +214,42 @@ export function ToggleInspectorPanelButton() {
       title="Toggle inspector panel"
     >
       <PanelRightClose className="h-5 w-5" />
+    </button>
+  );
+}
+
+export function ThemeToggleButton() {
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
+
+  // Avoid hydration mismatch
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <div className="flex h-8 w-8 items-center justify-center rounded">
+        <div className="h-4 w-4" />
+      </div>
+    );
+  }
+
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
+
+  return (
+    <button
+      onClick={toggleTheme}
+      className="flex h-8 w-8 items-center justify-center rounded hover:bg-bg-hover"
+      title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+    >
+      {theme === "dark" ? (
+        <Sun className="h-4 w-4" />
+      ) : (
+        <Moon className="h-4 w-4" />
+      )}
     </button>
   );
 }

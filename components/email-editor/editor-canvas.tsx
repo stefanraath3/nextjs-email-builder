@@ -19,6 +19,7 @@ import {
   ImportJsonButton,
   ScreenSizeToggle,
   ShareButton,
+  ThemeToggleButton,
   ToggleInspectorPanelButton,
   ToggleSamplesPanelButton,
 } from "./toolbar-controls";
@@ -99,6 +100,7 @@ export default function EditorCanvas() {
             <ImportJsonButton />
             <ScreenSizeToggle />
             <ShareButton />
+            <ThemeToggleButton />
           </div>
         </div>
 

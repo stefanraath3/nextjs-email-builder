@@ -278,10 +278,12 @@ export default function AddBlockMenu({
                         e.stopPropagation();
                         handleSelect(option);
                       }}
-                      className="flex flex-col items-center gap-2 rounded-lg border border-border p-3 text-center text-sm hover:border-accent-primary hover:bg-accent-bg"
+                      className="flex flex-col items-center gap-2 rounded-lg border border-border p-3 text-center text-sm text-foreground hover:border-accent-primary hover:bg-accent-bg"
                     >
-                      {option.icon}
-                      <span className="text-xs">{option.label}</span>
+                      <div className="text-foreground">{option.icon}</div>
+                      <span className="text-xs text-foreground">
+                        {option.label}
+                      </span>
                     </button>
                   ))}
                 </div>
@@ -336,10 +338,12 @@ export default function AddBlockMenu({
                       e.stopPropagation();
                       handleSelect(option);
                     }}
-                    className="flex flex-col items-center gap-2 rounded-lg border border-border p-3 text-center text-sm hover:border-accent-primary hover:bg-accent-bg"
+                    className="flex flex-col items-center gap-2 rounded-lg border border-border p-3 text-center text-sm text-foreground hover:border-accent-primary hover:bg-accent-bg"
                   >
-                    {option.icon}
-                    <span className="text-xs">{option.label}</span>
+                    <div className="text-foreground">{option.icon}</div>
+                    <span className="text-xs text-foreground">
+                      {option.label}
+                    </span>
                   </button>
                 ))}
               </div>

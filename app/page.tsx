@@ -1,8 +1,16 @@
+"use client";
+
 import Image from "next/image";
+import { ThemeToggleButton } from "@/components/email-editor/toolbar-controls";
 
 export default function Home() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-bg-secondary font-sans">
+      {/* Theme toggle in top right */}
+      <div className="fixed top-4 right-4 z-50">
+        <ThemeToggleButton />
+      </div>
+      
       <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-background sm:items-start">
         <Image
           className="dark:invert"
