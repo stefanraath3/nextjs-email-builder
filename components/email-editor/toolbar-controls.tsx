@@ -73,7 +73,10 @@ export function ImportJsonButton() {
       </button>
 
       {open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center"
+          style={{ backgroundColor: "var(--overlay)" }}
+        >
           <div className="w-full max-w-2xl rounded-lg bg-popover shadow-xl">
             <div className="border-b border-border px-6 py-4">
               <h2 className="text-xl font-semibold">Import JSON</h2>

@@ -33,7 +33,7 @@ export default function SliderInput({
         onChange={(e) => onChange(Number(e.target.value))}
         className="h-2 w-full cursor-pointer appearance-none rounded-lg bg-muted"
         style={{
-          background: `linear-gradient(to right, rgb(249, 115, 22) 0%, rgb(249, 115, 22) ${((value - min) / (max - min)) * 100}%, rgb(243, 244, 246) ${((value - min) / (max - min)) * 100}%, rgb(243, 244, 246) 100%)`,
+          background: `linear-gradient(to right, var(--accent-primary) 0%, var(--accent-primary) ${((value - min) / (max - min)) * 100}%, var(--muted) ${((value - min) / (max - min)) * 100}%, var(--muted) 100%)`,
         }}
       />
       <div className="min-w-12 shrink-0 text-right text-sm text-text-secondary">
@@ -43,4 +43,3 @@ export default function SliderInput({
     </div>
   );
 }
-

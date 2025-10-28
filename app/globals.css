@@ -36,6 +36,13 @@
   --color-border-default: var(--border-default);
   --color-border-emphasis: var(--border-emphasis);
 
+  --color-selection: var(--selection);
+  --color-selection-hover: var(--selection-hover);
+  --color-overlay: var(--overlay);
+  --color-neutral-light: var(--neutral-light);
+  --color-neutral-medium: var(--neutral-medium);
+  --color-neutral-dark: var(--neutral-dark);
+
   /* shadcn/ui compatibility */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -110,6 +117,18 @@
   --border-default: #e5e7eb;
   --border-emphasis: #d1d5db;
 
+  /* Selection & Focus */
+  --selection: #0079cc;
+  --selection-hover: rgba(0, 121, 204, 0.3);
+
+  /* Overlay & Backdrop */
+  --overlay: rgba(0, 0, 0, 0.5);
+
+  /* Neutral Grays */
+  --neutral-light: #cccccc;
+  --neutral-medium: #999999;
+  --neutral-dark: #333333;
+
   /* shadcn/ui compatibility - map to our design system */
   --background: var(--bg-primary);
   --foreground: var(--text-primary);
@@ -160,6 +179,18 @@
   --border-subtle: #1f1f1f;
   --border-default: #262626;
   --border-emphasis: #404040;
+
+  /* Selection & Focus - Dark Mode */
+  --selection: #0079cc;
+  --selection-hover: rgba(0, 121, 204, 0.3);
+
+  /* Overlay & Backdrop - Dark Mode */
+  --overlay: rgba(0, 0, 0, 0.7);
+
+  /* Neutral Grays - Dark Mode */
+  --neutral-light: #525252;
+  --neutral-medium: #737373;
+  --neutral-dark: #a3a3a3;
 
   /* shadcn/ui compatibility - map to our design system */
   --background: var(--bg-primary);

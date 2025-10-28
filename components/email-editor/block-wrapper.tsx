@@ -23,9 +23,9 @@ export default function EditorBlockWrapper({
 
   let outline: CSSProperties["outline"];
   if (selectedBlockId === blockId) {
-    outline = "2px solid rgba(0,121,204, 1)";
+    outline = "2px solid var(--selection)";
   } else if (mouseInside) {
-    outline = "2px solid rgba(0,121,204, 0.3)";
+    outline = "2px solid var(--selection-hover)";
   }
 
   const renderMenu = () => {
