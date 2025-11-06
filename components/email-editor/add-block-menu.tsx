@@ -20,6 +20,11 @@ import {
   useOpenAddBlockMenuId,
   setOpenAddBlockMenuId,
 } from "@/lib/editor/editor-store";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 type AddBlockMenuProps = {
   onSelect: (block: TEditorBlock) => void;
@@ -239,118 +244,98 @@ export default function AddBlockMenu({
   // Placeholder button (always visible, for empty containers)
   if (placeholder) {
     return (
-      <div className="relative">
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            if (isOpen) {
-              handleClose();
-            } else {
-              handleOpen();
-            }
-          }}
-          className="flex h-12 w-full items-center justify-center bg-secondary hover:bg-bg-hover"
-        >
-          <div className="rounded-full bg-accent-primary p-0.5 text-primary-foreground">
-            <Plus className="h-4 w-4" />
-          </div>
-        </button>
-
-        {isOpen && (
-          <>
-            <div
-              className="fixed inset-0 z-100"
-              onClick={(e) => {
-                e.stopPropagation();
-                handleClose();
-              }}
-            />
-            <div className="absolute left-1/2 top-full z-101 mt-2 w-64 -translate-x-1/2 rounded-lg border border-border bg-popover shadow-xl">
-              <div className="p-2">
-                <p className="mb-2 px-2 text-xs font-semibold text-text-tertiary">
-                  ADD BLOCK
-                </p>
-                <div className="grid grid-cols-2 gap-2 p-1">
-                  {BLOCK_OPTIONS.map((option) => (
-                    <button
-                      key={option.label}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleSelect(option);
-                      }}
-                      className="flex flex-col items-center gap-2 rounded-lg border border-border p-3 text-center text-sm text-foreground hover:border-accent-primary hover:bg-accent-bg"
-                    >
-                      <div className="text-foreground">{option.icon}</div>
-                      <span className="text-xs text-foreground">
-                        {option.label}
-                      </span>
-                    </button>
-                  ))}
-                </div>
-              </div>
+      <Popover
+        open={isOpen}
+        onOpenChange={(open) => (open ? handleOpen() : handleClose())}
+      >
+        <PopoverTrigger asChild>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+            className="flex h-12 w-full items-center justify-center bg-secondary hover:bg-bg-hover"
+          >
+            <div className="rounded-full bg-accent-primary p-0.5 text-primary-foreground">
+              <Plus className="h-4 w-4" />
             </div>
-          </>
-        )}
-      </div>
+          </button>
+        </PopoverTrigger>
+        <PopoverContent
+          className="w-64 p-2"
+          side="bottom"
+          align="center"
+          collisionPadding={{ top: 16, bottom: 16 }}
+        >
+          <p className="mb-2 px-2 text-xs font-semibold text-text-tertiary">
+            ADD BLOCK
+          </p>
+          <div className="grid grid-cols-2 gap-2 p-1">
+            {BLOCK_OPTIONS.map((option) => (
+              <button
+                key={option.label}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleSelect(option);
+                }}
+                className="flex flex-col items-center gap-2 rounded-lg border border-border p-3 text-center text-sm text-foreground hover:border-accent-primary hover:bg-accent-bg"
+              >
+                <div className="text-foreground">{option.icon}</div>
+                <span className="text-xs text-foreground">{option.label}</span>
+              </button>
+            ))}
+          </div>
+        </PopoverContent>
+      </Popover>
     );
   }
 
   // Divider button (only visible on hover when NO menu is open)
   return (
     <div ref={buttonRef} className="relative" style={{ position: "relative" }}>
-      <button
-        onClick={(e) => {
-          e.stopPropagation();
-          if (isOpen) {
-            handleClose();
-          } else {
-            handleOpen();
-          }
-        }}
-        className={`
-          absolute left-1/2 top-[-12px] z-50 -translate-x-1/2 rounded-full p-0.5 transition-opacity
-          ${visible || isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}
-          bg-accent-primary text-primary-foreground shadow-md hover:bg-accent-hover
-        `}
+      <Popover
+        open={isOpen}
+        onOpenChange={(open) => (open ? handleOpen() : handleClose())}
       >
-        <Plus className="h-4 w-4" />
-      </button>
-
-      {isOpen && (
-        <>
-          <div
-            className="fixed inset-0 z-100"
+        <PopoverTrigger asChild>
+          <button
             onClick={(e) => {
               e.stopPropagation();
-              handleClose();
             }}
-          />
-          <div className="absolute left-1/2 top-2 z-101 w-64 -translate-x-1/2 rounded-lg border border-border bg-popover shadow-xl">
-            <div className="p-2">
-              <p className="mb-2 px-2 text-xs font-semibold text-text-tertiary">
-                ADD BLOCK
-              </p>
-              <div className="grid grid-cols-2 gap-2 p-1">
-                {BLOCK_OPTIONS.map((option) => (
-                  <button
-                    key={option.label}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleSelect(option);
-                    }}
-                    className="flex flex-col items-center gap-2 rounded-lg border border-border p-3 text-center text-sm text-foreground hover:border-accent-primary hover:bg-accent-bg"
-                  >
-                    <div className="text-foreground">{option.icon}</div>
-                    <span className="text-xs text-foreground">
-                      {option.label}
-                    </span>
-                  </button>
-                ))}
-              </div>
-            </div>
+            className={`
+              absolute left-1/2 top-[-12px] z-50 -translate-x-1/2 rounded-full p-0.5 transition-opacity
+              ${visible || isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}
+              bg-accent-primary text-primary-foreground shadow-md hover:bg-accent-hover
+            `}
+          >
+            <Plus className="h-4 w-4" />
+          </button>
+        </PopoverTrigger>
+        <PopoverContent
+          className="w-64 p-2"
+          side="bottom"
+          align="center"
+          collisionPadding={{ top: 16, bottom: 16 }}
+        >
+          <p className="mb-2 px-2 text-xs font-semibold text-text-tertiary">
+            ADD BLOCK
+          </p>
+          <div className="grid grid-cols-2 gap-2 p-1">
+            {BLOCK_OPTIONS.map((option) => (
+              <button
+                key={option.label}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleSelect(option);
+                }}
+                className="flex flex-col items-center gap-2 rounded-lg border border-border p-3 text-center text-sm text-foreground hover:border-accent-primary hover:bg-accent-bg"
+              >
+                <div className="text-foreground">{option.icon}</div>
+                <span className="text-xs text-foreground">{option.label}</span>
+              </button>
+            ))}
           </div>
-        </>
-      )}
+        </PopoverContent>
+      </Popover>
     </div>
   );
 }

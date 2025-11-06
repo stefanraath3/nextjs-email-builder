@@ -63,7 +63,7 @@ export default function EditorCanvas() {
   };
 
   return (
-    <div className="flex h-screen flex-1 flex-col">
+    <div className="flex flex-1 flex-col min-h-0">
       {/* Toolbar */}
       <div className="sticky top-0 z-10 flex h-12 items-center justify-between border-b border-border bg-background px-2">
         <ToggleSamplesPanelButton />
@@ -108,7 +108,7 @@ export default function EditorCanvas() {
       </div>
 
       {/* Main content area */}
-      <div className="min-w-[370px] flex-1 overflow-auto">
+      <div className="min-w-[370px] flex-1 overflow-auto min-h-0">
         {renderMainPanel()}
       </div>
     </div>

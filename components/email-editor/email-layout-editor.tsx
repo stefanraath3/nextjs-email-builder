@@ -54,7 +54,7 @@ export default function EmailLayoutEditor(props: EmailLayoutProps) {
         letterSpacing: "0.15008px",
         lineHeight: "1.5",
         margin: "0",
-        padding: "32px 0",
+        padding: "32px 0 96px",
         width: "100%",
         minHeight: "100%",
       }}
